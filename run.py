@@ -83,6 +83,21 @@ def update_worksheet(data, worksheet):
     print(f"{worksheet} worksheet updated successfully.\n")
 
 
+def previous_sales():
+    """
+    Collects columns of data from sales worksheets, collects
+    previous 5 days of sales for these, and then returns the average for
+    those 5 days plus 10% rounded to nearest whole number.
+    """
+    sales = SHEET.worksheet("sales")
+
+    columns = []
+    for ind in range(1, 7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    pprint(columns)
+
+
 def main():
     """
     Run all program functions
@@ -94,5 +109,7 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
 
 
-print("Welcome to Love Sandwiches")
-main()
+# print("Welcome to Love Sandwiches")
+# main()
+
+previous_sales()
